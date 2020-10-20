@@ -64,12 +64,15 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
 
     override fun onCreate() {
         super.onCreate()
+        mListMusic = mMediaProvider.getListMusicLocal()
         mMediaPlayer = MediaPlayer()
+        mMediaPlayer?.setOnPreparedListener(this)
+        mMediaPlayer?.setOnCompletionListener(this)
         notificationHelper =
             NotificationHelper(this, "ÂM NHẠC")
         startForeground(NotificationHelper.NOTIF_ID, notificationHelper?.builder())
+        notificationHelper?.updateNotification(false, getNameSong())
         registerReceiver()
-        mListMusic = mMediaProvider.getListMusicLocal()
     }
 
     fun playMusicWithAction(indexOfSong: Int = mCurrentIndexOfSong, action: String) {
@@ -126,9 +129,7 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
                         it.stop()
                         it.reset()
                         it.setDataSource(mListMusic[indexOfSong].Url)
-                        it.setOnPreparedListener(this)
                         it.prepareAsync()
-
                     }
                 } catch (e: Exception) {
                     playMusicWithAction(action = NEXT_FLAG)

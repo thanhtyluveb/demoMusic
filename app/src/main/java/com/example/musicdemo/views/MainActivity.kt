@@ -43,11 +43,13 @@ class MainActivity : BaseActivity(), View.OnClickListener {
     private fun updateUi() {
         this.tvSongNameMediaPlayer.text = mMusicServiceBase?.getNameSong()
         this.btnPlay.text = if (mMusicServiceBase?.mIsPlaying == true) "Pau" else "Play"
+        mSongAdapter?.setCurrentPlayingSong(mMusicServiceBase?.mCurrentIndexOfSong ?: 0)
     }
 
     private fun initRecyclerView() {
         mSongAdapter = SongsAdapter()
         rvListSong.layoutManager = LinearLayoutManager(this)
+        rvListSong.itemAnimator = null
         mSongAdapter?.setCallBack { index ->
             val intent = Intent(this, PlayerMediaActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_SINGLE_TOP
