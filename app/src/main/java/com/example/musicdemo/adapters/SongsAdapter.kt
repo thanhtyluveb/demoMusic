@@ -1,9 +1,11 @@
-package com.example.musicdemo
+package com.example.musicdemo.adapters
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.musicdemo.R
+import com.example.musicdemo.models.SongModel
 import kotlinx.android.synthetic.main.song_item.view.*
 
 class SongsAdapter() :
@@ -23,7 +25,7 @@ class SongsAdapter() :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): SongsAdapter.MyViewHolder {
+    ): MyViewHolder {
         val textView = LayoutInflater.from(parent.context)
             .inflate(R.layout.song_item, parent, false)
         return MyViewHolder(textView)

@@ -3,7 +3,7 @@ package com.example.musicdemo.provider
 import android.content.Context
 import android.database.Cursor
 import android.provider.MediaStore
-import com.example.musicdemo.SongModel
+import com.example.musicdemo.models.SongModel
 
 class MediaProvider(var context: Context) {
     fun getListMusicLocal(): ArrayList<SongModel> {

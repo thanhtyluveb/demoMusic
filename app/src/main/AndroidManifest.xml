@@ -15,14 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PlayerMediaActivity"></activity>
+        <activity android:name=".views.PlayerMediaActivity"/>
 
         <service
-            android:name=".MusicService"
-            android:enabled="true"
-            android:exported="true" />
+            android:name=".services.MusicService" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name=".views.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
