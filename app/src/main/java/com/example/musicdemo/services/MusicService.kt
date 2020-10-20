@@ -130,7 +130,7 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
 
                     }
                 } catch (e: Exception) {
-                    playMusic(indexOfSong + 1)
+                    playMusicWithAction(action = NEXT_FLAG)
                     Toast.makeText(applicationContext, "Song not found", Toast.LENGTH_SHORT).show()
                 }
             }
@@ -164,6 +164,6 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
     }
 
     override fun onCompletion(mp: MediaPlayer?) {
-        playMusic(mCurrentIndexOfSong + 1)
+        playMusicWithAction(action = NEXT_FLAG)
     }
 }
