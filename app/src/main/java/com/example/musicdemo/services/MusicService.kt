@@ -120,6 +120,7 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
             if (indexOfSong == mCurrentIndexOfSong && mIsPlaying) {
                 mMediaPlayer?.start()
             } else {
+                mCurrentIndexOfSong = indexOfSong
                 try {
                     mMediaPlayer?.let {
                         it.stop()
@@ -134,7 +135,6 @@ class MusicService : Service(), MediaPlayer.OnPreparedListener, MediaPlayer.OnCo
                     Toast.makeText(applicationContext, "Song not found", Toast.LENGTH_SHORT).show()
                 }
             }
-            mCurrentIndexOfSong = indexOfSong
             notificationHelper?.updateNotification(true, getNameSong())
             mCallBack?.invoke()
         }
