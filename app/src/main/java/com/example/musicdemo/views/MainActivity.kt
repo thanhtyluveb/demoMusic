@@ -1,18 +1,19 @@
 package com.example.musicdemo.views
 
-import android.content.*
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.musicdemo.*
+import com.example.musicdemo.R
 import com.example.musicdemo.adapters.SongsAdapter
 import com.example.musicdemo.models.SongModel
 import com.example.musicdemo.provider.MediaProvider
 import com.example.musicdemo.services.MusicService
+import com.example.musicdemo.stickheaderhelper.StickHeaderItemDecoration
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_player_media.*
-import kotlinx.android.synthetic.main.activity_player_media.view.*
+
 
 class MainActivity : BaseActivity(), View.OnClickListener {
     private var mSongAdapter: SongsAdapter? = null
@@ -48,6 +49,9 @@ class MainActivity : BaseActivity(), View.OnClickListener {
 
     private fun initRecyclerView() {
         mSongAdapter = SongsAdapter()
+        mSongAdapter?.let {
+            rvListSong.addItemDecoration(StickHeaderItemDecoration(it))
+        }
         rvListSong.layoutManager = LinearLayoutManager(this)
         rvListSong.itemAnimator = null
         mSongAdapter?.setCallBack { index ->
